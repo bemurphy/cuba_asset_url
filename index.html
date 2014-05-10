@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Cuba asset url by bemurphy</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Cuba asset url</h1>
+        <p>Plugin for Cuba to use signature asset urls</p>
+
+        <p class="view"><a href="https://github.com/bemurphy/cuba_asset_url">View the Project on GitHub <small>bemurphy/cuba_asset_url</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/bemurphy/cuba_asset_url/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bemurphy/cuba_asset_url/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bemurphy/cuba_asset_url">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="cubaasseturl" class="anchor" href="#cubaasseturl"><span class="octicon octicon-link"></span></a>CubaAssetUrl</h1>
+
+<p>Plugin for Cuba to use signature asset urls.  This allows you to cache your
+css/js assets and prevents browsers from getting stuck with old assets on
+new deploys.</p>
+
+<p>The plugin makes a few simple assumptions:</p>
+
+<ol>
+<li>You serve a single css file from <code>/css/app.css</code>
+</li>
+<li>You serve a single js file from <code>/js/app.js</code>
+</li>
+<li>You have a file in root named <code>assets.json</code> that looks somthing like this:</li>
+</ol><div class="highlight highlight-json"><pre><span class="p">{</span>
+  <span class="nt">"app.css"</span><span class="p">:</span> <span class="s2">"/css/app-8c18cbb09b70c847500da8818bac816f.css"</span><span class="p">,</span>
+  <span class="nt">"app.js"</span><span class="p">:</span> <span class="s2">"/js/app-d41d8cd98f00b204e9800998ecf8427e.js"</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>You may of course organize your assets among multiple files however you wish,
+but the layout should only reference the two assets.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'cuba_asset_url'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install cuba_asset_url
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>In production/staging, enable via <code>ENV['USE_ASSET_SIGNATURES'] = true</code></p>
+
+<p>In your template, use the <code>css_url</code> and <code>js_url</code> for the path to the asset:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"&lt;%= css_url %&gt;"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"&lt;%= js_url %&gt;"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+</pre></div>
+
+<h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>Todo</h2>
+
+<p>Probably it would be better to not assume the assets but rather pass a path
+to the helper.  This would enable people who prefer a <code>public/script</code> or
+<code>public/styles</code> directory.</p>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it ( <a href="http://github.com/">http://github.com/</a>/cuba_asset_url/fork )</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/bemurphy">bemurphy</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
