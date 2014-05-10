@@ -20,6 +20,9 @@ The plugin makes a few simple assumptions:
 You may of course organize your assets among multiple files however you wish,
 but the layout should only reference the two assets.
 
+You can generate the signature files with a process like that found in the
+gist at https://gist.github.com/bemurphy/23ed00cc4f28676e28ca
+
 ## Installation
 
 Add this line to your application's Gemfile:
