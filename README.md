@@ -9,8 +9,8 @@ The plugin makes an assumption that, your app has a file in root named
 
 ```json
 {
-  "all.css": "/compiled/all-8c18cbb09b70c847500da8818bac816f.css",
-  "all.js": "/compiled/all-d41d8cd98f00b204e9800998ecf8427e.js"
+  "all.css": "/compiled/all-8c18cbb0.css",
+  "all.js": "/compiled/all-d41d8cd98.js"
 }
 ```
 
@@ -18,7 +18,9 @@ You may of course organize your assets among multiple files however you wish,
 but the layout should reference assets from this manifest file.
 
 You can generate the signature files with a process like that found in the
-gist at https://gist.github.com/bemurphy/23ed00cc4f28676e28ca
+gist at https://gist.github.com/bemurphy/23ed00cc4f28676e28ca.  The assumption
+is you have a directory like compiled with pairs of an asset file along with
+a minified matching file with a digest signature in the filename.
 
 ## Installation
 
