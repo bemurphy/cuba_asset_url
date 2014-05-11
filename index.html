@@ -39,16 +39,16 @@ new deploys.</p>
 <code>assets.json</code> that looks somthing like this:</p>
 
 <div class="highlight highlight-json"><pre><span class="p">{</span>
-  <span class="nt">"all.css"</span><span class="p">:</span> <span class="s2">"/compiled/all-8c18cbb09b70c847500da8818bac816f.css"</span><span class="p">,</span>
-  <span class="nt">"all.js"</span><span class="p">:</span> <span class="s2">"/compiled/all-d41d8cd98f00b204e9800998ecf8427e.js"</span>
+  <span class="nt">"all.css"</span><span class="p">:</span> <span class="s2">"/compiled/all-8c18cbb0.css"</span><span class="p">,</span>
+  <span class="nt">"all.js"</span><span class="p">:</span> <span class="s2">"/compiled/all-d41d8cd98.js"</span>
 <span class="p">}</span>
 </pre></div>
 
-<p>You may of course organize your assets among multiple files however you wish,
-but the layout should reference assets from this manifest file.</p>
+<p>You can organize your assets how you wish, but the layout should reference
+assets from this manifest file.</p>
 
 <p>You can generate the signature files with a process like that found in the
-gist at <a href="https://gist.github.com/bemurphy/23ed00cc4f28676e28ca">https://gist.github.com/bemurphy/23ed00cc4f28676e28ca</a></p>
+gist at <a href="https://gist.github.com/bemurphy/23ed00cc4f28676e28ca">https://gist.github.com/bemurphy/23ed00cc4f28676e28ca</a>.</p>
 
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -73,7 +73,8 @@ gist at <a href="https://gist.github.com/bemurphy/23ed00cc4f28676e28ca">https://
 
 <p>In production/staging, enable via <code>ENV['USE_ASSET_SIGNATURES'] = true</code></p>
 
-<p>In your template, use the <code>css_url</code> and <code>js_url</code> for the path to the asset:</p>
+<p>In your template, use the <code>css_url</code> and <code>js_url</code> helpers for the path to
+the asset:</p>
 
 <div class="highlight highlight-html"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"&lt;%= css_url(:all) %&gt;"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
 
@@ -81,10 +82,10 @@ gist at <a href="https://gist.github.com/bemurphy/23ed00cc4f28676e28ca">https://
 </pre></div>
 
 <p>The argument is the name of the attribute key in the manifest file.  <code>:all</code> is
-a nice convention but you can change this if you wish.</p>
+a nice convention but not required.</p>
 
-<p>If you aren't set to use asset_signatures, the config will be rebuilt to default
-to the same path but with the signature bit stripped out.  So</p>
+<p>If you aren't set to use asset_signatures, the paths returned will have the
+signature parts stripped out.</p>
 
 <pre><code>/compiled/foo-af134d.css
 </code></pre>
