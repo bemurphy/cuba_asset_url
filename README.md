@@ -4,21 +4,18 @@ Plugin for Cuba to use signature asset urls.  This allows you to cache your
 css/js assets and prevents browsers from getting stuck with old assets on
 new deploys.
 
-The plugin makes a few simple assumptions:
-
-1. You serve a single css file from `/css/app.css`
-2. You serve a single js file from `/js/app.js`
-3. You have a file in root named `assets.json` that looks somthing like this:
+The plugin makes an assumption that, your app has a file in root named
+`assets.json` that looks somthing like this:
 
 ```json
 {
-  "app.css": "/css/app-8c18cbb09b70c847500da8818bac816f.css",
-  "app.js": "/js/app-d41d8cd98f00b204e9800998ecf8427e.js"
+  "all.css": "/compiled/all-8c18cbb09b70c847500da8818bac816f.css",
+  "all.js": "/compiled/all-d41d8cd98f00b204e9800998ecf8427e.js"
 }
 ```
 
 You may of course organize your assets among multiple files however you wish,
-but the layout should only reference the two assets.
+but the layout should reference assets from this manifest file.
 
 You can generate the signature files with a process like that found in the
 gist at https://gist.github.com/bemurphy/23ed00cc4f28676e28ca
@@ -44,10 +41,24 @@ In production/staging, enable via `ENV['USE_ASSET_SIGNATURES'] = true`
 In your template, use the `css_url` and `js_url` for the path to the asset:
 
 ```html
-<link href="<%= css_url %>" rel="stylesheet">
+<link href="<%= css_url(:all) %>" rel="stylesheet">
 
-<script src="<%= js_url %>"></script>
+<script src="<%= js_url(:all) %>"></script>
+```
 
+The argument is the name of the attribute key in the manifest file.  `:all` is
+a nice convention but you can change this if you wish.
+
+If you aren't set to use asset_signatures, the config will be rebuilt to default
+to the same path but with the signature bit stripped out.  So
+
+```
+/compiled/foo-af134d.css
+```
+
+becomes
+```
+/compiled/foo.css
 ```
 
 ## Todo
