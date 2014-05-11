@@ -14,13 +14,11 @@ The plugin makes an assumption that, your app has a file in root named
 }
 ```
 
-You may of course organize your assets among multiple files however you wish,
-but the layout should reference assets from this manifest file.
+You can organize your assets how you wish, but the layout should reference
+assets from this manifest file.
 
 You can generate the signature files with a process like that found in the
-gist at https://gist.github.com/bemurphy/23ed00cc4f28676e28ca.  The assumption
-is you have a directory like compiled with pairs of an asset file along with
-a minified matching file with a digest signature in the filename.
+gist at https://gist.github.com/bemurphy/23ed00cc4f28676e28ca.
 
 ## Installation
 
@@ -40,7 +38,8 @@ Or install it yourself as:
 
 In production/staging, enable via `ENV['USE_ASSET_SIGNATURES'] = true`
 
-In your template, use the `css_url` and `js_url` for the path to the asset:
+In your template, use the `css_url` and `js_url` helpers for the path to
+the asset:
 
 ```html
 <link href="<%= css_url(:all) %>" rel="stylesheet">
@@ -49,10 +48,10 @@ In your template, use the `css_url` and `js_url` for the path to the asset:
 ```
 
 The argument is the name of the attribute key in the manifest file.  `:all` is
-a nice convention but you can change this if you wish.
+a nice convention but not required.
 
-If you aren't set to use asset_signatures, the config will be rebuilt to default
-to the same path but with the signature bit stripped out.  So
+If you aren't set to use asset_signatures, the paths returned will have the
+signature parts stripped out.
 
 ```
 /compiled/foo-af134d.css
