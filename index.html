@@ -35,22 +35,17 @@
 css/js assets and prevents browsers from getting stuck with old assets on
 new deploys.</p>
 
-<p>The plugin makes a few simple assumptions:</p>
+<p>The plugin makes an assumption that, your app has a file in root named
+<code>assets.json</code> that looks somthing like this:</p>
 
-<ol>
-<li>You serve a single css file from <code>/css/app.css</code>
-</li>
-<li>You serve a single js file from <code>/js/app.js</code>
-</li>
-<li>You have a file in root named <code>assets.json</code> that looks somthing like this:</li>
-</ol><div class="highlight highlight-json"><pre><span class="p">{</span>
-  <span class="nt">"app.css"</span><span class="p">:</span> <span class="s2">"/css/app-8c18cbb09b70c847500da8818bac816f.css"</span><span class="p">,</span>
-  <span class="nt">"app.js"</span><span class="p">:</span> <span class="s2">"/js/app-d41d8cd98f00b204e9800998ecf8427e.js"</span>
+<div class="highlight highlight-json"><pre><span class="p">{</span>
+  <span class="nt">"all.css"</span><span class="p">:</span> <span class="s2">"/compiled/all-8c18cbb09b70c847500da8818bac816f.css"</span><span class="p">,</span>
+  <span class="nt">"all.js"</span><span class="p">:</span> <span class="s2">"/compiled/all-d41d8cd98f00b204e9800998ecf8427e.js"</span>
 <span class="p">}</span>
 </pre></div>
 
 <p>You may of course organize your assets among multiple files however you wish,
-but the layout should only reference the two assets.</p>
+but the layout should reference assets from this manifest file.</p>
 
 <p>You can generate the signature files with a process like that found in the
 gist at <a href="https://gist.github.com/bemurphy/23ed00cc4f28676e28ca">https://gist.github.com/bemurphy/23ed00cc4f28676e28ca</a></p>
@@ -80,18 +75,24 @@ gist at <a href="https://gist.github.com/bemurphy/23ed00cc4f28676e28ca">https://
 
 <p>In your template, use the <code>css_url</code> and <code>js_url</code> for the path to the asset:</p>
 
-<div class="highlight highlight-html"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"&lt;%= css_url %&gt;"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+<div class="highlight highlight-html"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"&lt;%= css_url(:all) %&gt;"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
 
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"&lt;%= js_url %&gt;"</span><span class="nt">&gt;&lt;/script&gt;</span>
-
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"&lt;%= js_url(:all) %&gt;"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
-<h2>
-<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>Todo</h2>
+<p>The argument is the name of the attribute key in the manifest file.  <code>:all</code> is
+a nice convention but you can change this if you wish.</p>
 
-<p>Probably it would be better to not assume the assets but rather pass a path
-to the helper.  This would enable people who prefer a <code>public/script</code> or
-<code>public/styles</code> directory.</p>
+<p>If you aren't set to use asset_signatures, the config will be rebuilt to default
+to the same path but with the signature bit stripped out.  So</p>
+
+<pre><code>/compiled/foo-af134d.css
+</code></pre>
+
+<p>becomes</p>
+
+<pre><code>/compiled/foo.css
+</code></pre>
 
 <h2>
 <a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
