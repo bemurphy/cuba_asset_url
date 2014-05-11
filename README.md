@@ -61,12 +61,6 @@ becomes
 /compiled/foo.css
 ```
 
-## Todo
-
-Probably it would be better to not assume the assets but rather pass a path
-to the helper.  This would enable people who prefer a `public/script` or
-`public/styles` directory.
-
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/cuba_asset_url/fork )
