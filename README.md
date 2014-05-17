@@ -38,6 +38,12 @@ Or install it yourself as:
 
 In production/staging, enable via `ENV['USE_ASSET_SIGNATURES'] = true`
 
+Load the plugin like any other Cuba plugin:
+
+```ruby
+Cuba.plugin CubaAssetUrl
+```
+
 In your template, use the `css_url` and `js_url` helpers for the path to
 the asset:
 
